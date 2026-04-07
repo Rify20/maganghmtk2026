@@ -2,42 +2,49 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Portal Pengumuman Magang Himpunan Mahasiswa Teknik Komputer 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Kelulusan Magang HMTK 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="overlay"></div>
+
+    <div class="bg-glow"></div>
     
-    <main class="main-wrapper">
-        <div class="glass-card animate__animated animate__fadeInUp">
-            <header>
-                <div class="logo-container">
-                    <div class="pulse-effect"></div>
-                    <img src="logo.png" alt="Logo Himpunan" class="himpunan-logo">
-                </div>
-                <h1>Portal Pengumuman 2026</h1>
-                <p class="subtitle">Magang Himpunan Mahasiswa Teknik Komputer</p>
-            </header>
+    <main class="wrapper">
+        <div class="header-content animate__animated animate__fadeInDown">
+            <div class="badge">TA 2025/2026</div>
+            <h1>Pengumuman Hasil Seleksi <span class="accent-text">Magang HMTK</span></h1>
+            <p>Silakan masukkan identitas Anda untuk melihat status Mangang HMTK.</p>
+        </div>
 
-            <section id="input-section">
-                <div class="field-box">
-                    <label>Nama Lengkap Peserta</label>
-                    <input type="text" id="namaInput" placeholder="Masukkan nama sesuai data..." autocomplete="off">
+        <div class="interactive-card animate__animated animate__fadeInUp animate__delay-1s">
+            <div id="search-content">
+                <h3>Cek Status Seleksi</h3>
+                <p class="subtitle">Gunakan nama lengkap sesuai KTM/KTP</p>
+
+                <div class="input-box">
+                    <label>NAMA LENGKAP</label>
+                    <div class="input-field">
+                        <span class="icon">👤</span>
+                        <input type="text" id="namaInput" placeholder="Contoh: Muhammad Ikhsan" autocomplete="off">
+                    </div>
                 </div>
-                <button onclick="eksekusiCek()" class="btn-primary">
-                    <span>Lihat Hasil Seleksi</span>
+
+                <button onclick="eksekusiCek()" class="btn-main">
+                    <span>Lihat Hasil</span>
+                    <svg class="icon-arrow" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.172h-16.354v4h16.353l-6.177 6.172 2.848 2.828 10.975-11z"/></svg>
                 </button>
-            </section>
 
-            <section id="result-section" class="hidden animate__animated animate__zoomIn">
-                </section>
+                <div class="footer-note">
+                    <div class="pulse-dot"></div>
+                    <p>Satu perangkat hanya dapat mengecek satu nama peserta.</p>
+                </div>
+            </div>
 
-            <footer id="footer-action" class="hidden">
-                <button onclick="location.reload()" class="btn-back">Cari Nama Lain</button>
-            </footer>
+            <div id="result-content" class="hidden">
+                </div>
         </div>
     </main>
 

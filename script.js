@@ -1,69 +1,59 @@
-// DATABASE PESERTA (Update di sini)
-const listPeserta = [
-    { nama: "Budi Santoso", status: "LOLOS", pilihan: 1, departemen: "Media & Informasi" },
-    { nama: "Siti Rahma", status: "LOLOS", pilihan: 2, departemen: "Hubungan Masyarakat" },
-    { nama: "Andi Wijaya", status: "TIDAK_LOLOS" },
-    { nama: "Rina Astuti", status: "TIDAK_LOLOS" }
+const DB_MAGANG = [
+    { nama: "Muhammad Ikhsan", status: "LULUS", divisi: "MEDIA KREATIF" },
+    { nama: "Budi Santoso", status: "GAGAL" }
 ];
 
 function eksekusiCek() {
-    const inputRaw = document.getElementById('namaInput').value;
-    const inputNama = inputRaw.trim().toLowerCase();
-    const inputSect = document.getElementById('input-section');
-    const resultSect = document.getElementById('result-section');
-    const footerAct = document.getElementById('footer-action');
+    const inputNama = document.getElementById('namaInput').value.trim();
+    if (!inputNama) return alert("Masukkan nama kamu dulu ya!");
 
-    if (!inputNama) {
-        alert("Silakan masukkan nama lengkap Anda!");
+    // Fitur 1 HP 1 Nama
+    const userTerdaftar = localStorage.getItem('lock_device');
+    if (userTerdaftar && userTerdaftar.toLowerCase() !== inputNama.toLowerCase()) {
+        alert("Maaf, HP ini sudah terdaftar untuk mengecek nama lain.");
         return;
     }
 
-    // --- FITUR KEAMANAN: DEVICE LOCK (1 HP 1 NAMA) ---
-    const savedName = localStorage.getItem('user_locked_name');
-    
-    if (savedName && savedName.toLowerCase() !== inputNama) {
-        alert("Akses Ditolak! Perangkat ini sudah digunakan untuk mengecek nama lain. Sesuai kebijakan, 1 perangkat hanya untuk 1 user.");
-        return;
-    }
+    const data = DB_MAGANG.find(d => d.nama.toLowerCase() === inputNama.toLowerCase());
+    const searchDiv = document.getElementById('search-content');
+    const resultDiv = document.getElementById('result-content');
 
-    const data = listPeserta.find(p => p.nama.toLowerCase() === inputNama);
-
-    // Transisi Animasi
-    inputSect.classList.add('animate__animated', 'animate__fadeOut');
+    // Animasi Transisi Keluar
+    searchDiv.classList.add('animate__animated', 'animate__fadeOutLeft');
     
     setTimeout(() => {
-        inputSect.style.display = 'none';
-        resultSect.classList.remove('hidden');
-        footerAct.classList.remove('hidden');
+        searchDiv.style.display = 'none';
+        resultDiv.classList.remove('hidden');
+        resultDiv.classList.add('animate__animated', 'animate__fadeInRight');
 
         if (!data) {
-            renderHTML("DATA TIDAK DITEMUKAN", inputRaw, "gray-card", "Mohon periksa kembali penulisan nama Anda atau hubungi admin.");
+            renderHTML("TIDAK DITEMUKAN", inputNama, "Cek ejaan nama anda kembali.", "bg-gagal");
         } else {
-            // KUNCI PERANGKAT KE NAMA INI
-            localStorage.setItem('user_locked_name', data.nama);
-
-            if (data.status === "LOLOS") {
-                renderHTML("SELAMAT ANDA LOLOS!", data.nama, "blue-card", `Diterima di Pilihan ${data.pilihan}:`, data.departemen);
+            localStorage.setItem('lock_device', data.nama);
+            if (data.status === "LULUS") {
+                renderHTML("SELAMAT, ANDA LULUS!", data.nama, "Divisi: " + data.divisi, "bg-lulus");
             } else {
-                renderHTML("MOHON MAAF...", data.nama, "red-card", "Silakan mengikuti pemilihan terakhir.", "Jadwal Menyusul");
+                renderHTML("MOHON MAAF", data.nama, "Tetap semangat dan coba lagi tahun depan!", "bg-gagal");
             }
         }
     }, 500);
 }
 
-function renderHTML(judul, nama, tema, subText, mainText = "") {
-    const target = document.getElementById('result-section');
-    let content = `
-        <div class="result-box ${tema}">
-            <span class="status-tag">${tema === 'blue-card' ? 'Success' : (tema === 'red-card' ? 'Notice' : 'Warning')}</span>
-            <h2 style="font-size: 22px; margin-bottom: 5px;">${judul}</h2>
-            <p style="font-size: 16px; font-weight: 600; opacity: 0.9; margin-bottom: 20px;">${nama.toUpperCase()}</p>
+function renderHTML(status, nama, detail, cssClass) {
+    const resultDiv = document.getElementById('result-content');
+    resultDiv.innerHTML = `
+        <div class="result-box">
+            <span class="status-badge ${cssClass}">HASIL SELEKSI</span>
+            <h2 style="font-size: 24px; color: var(--primary); margin-bottom: 5px;">${status}</h2>
+            <p style="font-size: 16px; font-weight: 700; margin-bottom: 25px;">${nama.toUpperCase()}</p>
             
-            <div style="background: rgba(0,0,0,0.1); padding: 15px; border-radius: 12px;">
-                <p style="font-size: 13px; opacity: 0.8;">${subText}</p>
-                <h3 style="font-size: 18px; margin-top: 5px;">${mainText}</h3>
+            <div style="background: white; padding: 20px; border-radius: 16px; margin-bottom: 30px;">
+                <p style="font-size: 14px; color: #555;">${detail}</p>
             </div>
+
+            <button onclick="location.reload()" class="btn-main" style="background: transparent; color: var(--primary); border: 2px solid var(--primary);">
+                Kembali
+            </button>
         </div>
     `;
-    target.innerHTML = content;
 }

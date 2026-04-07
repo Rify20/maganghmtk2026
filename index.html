@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Portal Pengumuman Magang Himpunan Mahasiswa Teknik Komputer 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="overlay"></div>
+    
+    <main class="main-wrapper">
+        <div class="glass-card animate__animated animate__fadeInUp">
+            <header>
+                <div class="logo-container">
+                    <div class="pulse-effect"></div>
+                    <img src="logo.png" alt="Logo Himpunan" class="himpunan-logo">
+                </div>
+                <h1>Portal Pengumuman 2026</h1>
+                <p class="subtitle">Magang Himpunan Mahasiswa Teknik Komputer</p>
+            </header>
+
+            <section id="input-section">
+                <div class="field-box">
+                    <label>Nama Lengkap Peserta</label>
+                    <input type="text" id="namaInput" placeholder="Masukkan nama sesuai data..." autocomplete="off">
+                </div>
+                <button onclick="eksekusiCek()" class="btn-primary">
+                    <span>Lihat Hasil Seleksi</span>
+                </button>
+            </section>
+
+            <section id="result-section" class="hidden animate__animated animate__zoomIn">
+                </section>
+
+            <footer id="footer-action" class="hidden">
+                <button onclick="location.reload()" class="btn-back">Cari Nama Lain</button>
+            </footer>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

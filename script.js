@@ -1,6 +1,21 @@
 const DB_MAGANG = [
-    { nama: "Muhammad Ikhsan", status: "LULUS", divisi: "MEDIA KREATIF" },
-    { nama: "Budi Santoso", status: "GAGAL" }
+    { nama: "DAVIN NUGROHO", status: "LULUS", divisi: "HUMAS" },
+    { nama: "Ahsanal Fuadi", status: "LULUS", divisi: "HUMAS" },
+    { nama: "IHSANU RIZKI", status: "LULUS", divisi: "HUMAS" },
+    { nama: "Prajabhakti Nurrachman", status: "LULUS", divisi: "HUMAS" },
+    { nama: "Reyzie Karrenina", status: "LULUS", divisi: "KOMINFO" },
+    { nama: "Muhamad Ajri Hasan ", status: "LULUS", divisi: "KOMINFO" },
+    { nama: "dedy chandra", status: "LULUS", divisi: "EKRAF" },
+    { nama: "Muhamad rafi saepudin", status: "LULUS", divisi: "EKRAF" },
+    { nama: "Hari Dwi Yulianto", status: "LULUS", divisi: "PSDM : MINBA" },
+    { nama: "Hanin Nurfitri", status: "LULUS", divisi: "PSDM : MINBA" },
+    { nama: "Neyla Intan Nur Ramadhan", status: "LULUS", divisi: "PSDMN : MINBA" },
+    { nama: "Sulis Putri Arti", status: "LULUS", divisi: "PSDMN : MINBA" },
+    { nama: "Fadhil Althaf Athallah", status: "GAGAL" }
+    { nama: "Soleh", status: "GAGAL" }
+    { nama: "Isyraaq aaisy aziizah", status: "GAGAL" }
+    { nama: "Robi'ah Al ''Adawiyah, status: "GAGAL" }
+    { nama: "Rifki, status: "GAGAL" }
 ];
 
 function eksekusiCek() {
@@ -33,7 +48,7 @@ function eksekusiCek() {
             if (data.status === "LULUS") {
                 renderHTML("SELAMAT, ANDA LULUS!", data.nama, "Divisi: " + data.divisi, "bg-lulus");
             } else {
-                renderHTML("MOHON MAAF", data.nama, "Tetap semangat dan coba lagi tahun depan!", "bg-gagal");
+                renderHTML("MOHON MAAF", data.nama, "Tetap semangat, dan nantikan pemilihan ke 3", "bg-gagal");
             }
         }
     }, 500);

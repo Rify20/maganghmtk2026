@@ -9,13 +9,13 @@ const DB_MAGANG = [
     { nama: "Muhamad rafi saepudin", status: "LULUS", divisi: "EKRAF" },
     { nama: "Hari Dwi Yulianto", status: "LULUS", divisi: "PSDM : MINBA" },
     { nama: "Hanin Nurfitri", status: "LULUS", divisi: "PSDM : MINBA" },
-    { nama: "Neyla Intan Nur Ramadhan", status: "LULUS", divisi: "PSDMN : MINBA" },
-    { nama: "Sulis Putri Arti", status: "LULUS", divisi: "PSDMN : MINBA" },
-    { nama: "Fadhil Althaf Athallah", status: "GAGAL" }
-    { nama: "Soleh", status: "GAGAL" }
-    { nama: "Isyraaq aaisy aziizah", status: "GAGAL" }
-    { nama: "Robi'ah Al ''Adawiyah, status: "GAGAL" }
-    { nama: "Rifki, status: "GAGAL" }
+    { nama: "Neyla Intan Nur Ramadhan", status: "LULUS", divisi: "PSDM : MINBA" }, // Typo N dihapus
+    { nama: "Sulis Putri Arti", status: "LULUS", divisi: "PSDM : MINBA" },       // Typo N dihapus
+    { nama: "Fadhil Althaf Athallah", status: "GAGAL" }, // Tambah koma
+    { nama: "Soleh", status: "GAGAL" },                  // Tambah koma
+    { nama: "Isyraaq aaisy aziizah", status: "GAGAL" },  // Tambah koma
+    { nama: "Robi'ah Al 'Adawiyah", status: "GAGAL" },   // Perbaikan tanda kutip
+    { nama: "Rifki", status: "GAGAL" }                   // Perbaikan tanda kutip
 ];
 
 function eksekusiCek() {

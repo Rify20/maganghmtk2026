@@ -9,17 +9,20 @@ const DB_MAGANG = [
     { nama: "Muhamad rafi saepudin", status: "LULUS", divisi: "EKRAF" },
     { nama: "Hari Dwi Yulianto", status: "LULUS", divisi: "PSDM : MINBA" },
     { nama: "Hanin Nurfitri", status: "LULUS", divisi: "PSDM : MINBA" },
-    { nama: "Neyla Intan Nur Ramadhan", status: "LULUS", divisi: "PSDM : MINBA" }, // Typo N dihapus
-    { nama: "Sulis Putri Arti", status: "LULUS", divisi: "PSDM : MINBA" },       // Typo N dihapus
-    { nama: "Fadhil Althaf Athallah", status: "GAGAL" }, // Tambah koma
-    { nama: "Soleh", status: "GAGAL" },                  // Tambah koma
-    { nama: "Isyraaq aaisy aziizah", status: "GAGAL" },  // Tambah koma
-    { nama: "Robi'ah Al 'Adawiyah", status: "GAGAL" },   // Perbaikan tanda kutip
-    { nama: "Rifki", status: "GAGAL" }                   // Perbaikan tanda kutip
+    { nama: "Neyla Intan Nur Ramadhan", status: "LULUS", divisi: "PSDM : MINBA" },
+    { nama: "Sulis Putri Arti", status: "LULUS", divisi: "PSDM : MINBA" },
+    { nama: "Fadhil Althaf Athallah", status: "GAGAL" },
+    { nama: "Soleh", status: "GAGAL" },
+    { nama: "Isyraaq aaisy aziizah", status: "GAGAL" },
+    { nama: `Robi'ah Al 'Adawiyah`, status: "GAGAL" }, // Pakai backtick (`) agar aman
+    { nama: "Rifki", status: "GAGAL" }
 ];
 
 function eksekusiCek() {
-    const inputNama = document.getElementById('namaInput').value.trim();
+    const inputNamaElement = document.getElementById('namaInput');
+    if (!inputNamaElement) return;
+
+    const inputNama = inputNamaElement.value.trim();
     if (!inputNama) return alert("Masukkan nama kamu dulu ya!");
 
     // Fitur 1 HP 1 Nama
@@ -32,6 +35,11 @@ function eksekusiCek() {
     const data = DB_MAGANG.find(d => d.nama.toLowerCase() === inputNama.toLowerCase());
     const searchDiv = document.getElementById('search-content');
     const resultDiv = document.getElementById('result-content');
+
+    if (!searchDiv || !resultDiv) {
+        console.error("Elemen HTML tidak ditemukan!");
+        return;
+    }
 
     // Animasi Transisi Keluar
     searchDiv.classList.add('animate__animated', 'animate__fadeOutLeft');
@@ -66,7 +74,7 @@ function renderHTML(status, nama, detail, cssClass) {
                 <p style="font-size: 14px; color: #555;">${detail}</p>
             </div>
 
-            <button onclick="location.reload()" class="btn-main" style="background: transparent; color: var(--primary); border: 2px solid var(--primary);">
+            <button onclick="location.reload()" class="btn-main" style="background: transparent; color: var(--primary); border: 2px solid var(--primary); cursor: pointer;">
                 Kembali
             </button>
         </div>
